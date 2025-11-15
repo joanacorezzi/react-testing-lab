@@ -1,15 +1,24 @@
 import React from "react";
 
 function AddTransactionForm({postTransaction}) {
+  //handle the form submission 
   function submitForm(e){
-    e.preventDefault()
-    const newTransaction = {
-      date: e.target.date.value,
-      description: e.target.description.value,
-      category: e.target.category.value,
-      amount: e.target.amount.value
+    e.preventDefault() //stop the page from refreshing when the form sumbmits
+
+const form = e.currentTarget; //get the form element the triggered the submit 
+
+//create a new transaction object 
+  const newTransaction = {
+   date: form.date.value,
+    description: form.description.value,
+    category: form.category.value,
+    amount: form.amount.value,
     }
-    postTransaction(newTransaction)
+    //call the function from the parent to add the new transaction 
+    postTransaction(newTransaction);
+
+    //clear form
+    form.reset();
 
   }
 
